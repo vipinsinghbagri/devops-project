@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: devops-postgres
+    environment:
+      POSTGRES_USER: devops
+      POSTGRES_PASSWORD: devops123
+      POSTGRES_DB: devops_dashboard
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  backend:
+    build: ./backend
+    container_name: devops-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=devops
+      - DB_PASSWORD=devops123
+      - DB_NAME=devops_dashboard
+      - PORT=5000
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    container_name: devops-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

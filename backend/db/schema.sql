@@ -1,0 +1,6 @@
+CREATE TABLE deployments (
+    id SERIAL PRIMARY KEY,
+    version VARCHAR(50) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    deployed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

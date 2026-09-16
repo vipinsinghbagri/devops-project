@@ -1,0 +1,256 @@
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --border: #334155;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: var(--bg-card);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.sidebar nav a {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.sidebar nav a:hover, .sidebar nav a.active {
+  background-color: rgba(56, 189, 248, 0.1);
+  color: var(--accent);
+}
+
+.server-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--success);
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--success);
+}
+
+/* Main Content */
+.main {
+  flex: 1;
+  padding: 2.5rem;
+  overflow-y: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.deploy-btn {
+  background-color: var(--accent);
+  color: #0f172a;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.deploy-btn:hover {
+  opacity: 0.9;
+}
+
+/* Stats Grid */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.card strong {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.card small {
+  font-size: 0.8rem;
+}
+
+.card small.success {
+  color: var(--success);
+}
+
+/* Layout Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.panel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.panel-header p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.live {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: var(--success);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.service, .deployment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+}
+
+.service:last-child, .deployment:last-child {
+  border-bottom: none;
+}
+
+.service strong, .deployment strong {
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.service span, .deployment span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.healthy {
+  color: var(--success);
+  font-size: 0.85rem;
+}
+
+.failed {
+  color: var(--danger);
+  font-size: 0.85rem;
+}
