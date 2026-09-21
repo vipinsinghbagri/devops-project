@@ -1,4 +1,3 @@
-cat << 'EOF' > .github/workflows/deploy.yml
 name: CI/CD Pipeline to AWS ECR and EC2
 
 on:
@@ -28,4 +27,3 @@ jobs:
 
       - name: Verify AWS Connection
         run: aws sts get-caller-identity
-EOF
