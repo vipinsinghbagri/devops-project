@@ -44,8 +44,6 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest ./frontend
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           docker push $REGISTRY/$REPOSITORY:latest
-<<<<<<< Updated upstream
-=======
 
       - name: Deploy to EC2 via AWS SSM
         run: |
@@ -73,4 +71,3 @@ jobs:
             --region eu-central-1
 
           echo "Deployment Completed Successfully on EC2!"
->>>>>>> Stashed changes
