@@ -45,7 +45,7 @@ function App() {
   return (
     <div className="app">
       <aside className="sidebar">
-        <div className="logo">⚡ DevOpsHub</div>
+        <div className="logo">vip's ⚡ DevOpsHub</div>
 
         <nav>
           <a className="active">Dashboard</a>
