@@ -44,3 +44,33 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest ./frontend
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           docker push $REGISTRY/$REPOSITORY:latest
+<<<<<<< Updated upstream
+=======
+
+      - name: Deploy to EC2 via AWS SSM
+        run: |
+          echo "Sending deployment command to EC2..."
+          COMMAND_ID=$(aws ssm send-command \
+            --instance-ids "i-075603d0a1b4e0198" \
+            --document-name "AWS-RunShellScript" \
+            --parameters 'commands=[
+              "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 345843269967.dkr.ecr.eu-central-1.amazonaws.com",
+              "cd /home/ubuntu",
+              "docker compose pull",
+              "docker compose up -d",
+              "docker system prune -f"
+            ]' \
+            --region eu-central-1 \
+            --query "Command.CommandId" \
+            --output text)
+
+          echo "Command sent! Command ID: $COMMAND_ID"
+          echo "Waiting for EC2 to finish deployment..."
+
+          aws ssm wait command-executed \
+            --command-id "$COMMAND_ID" \
+            --instance-id "i-075603d0a1b4e0198" \
+            --region eu-central-1
+
+          echo "Deployment Completed Successfully on EC2!"
+>>>>>>> Stashed changes
